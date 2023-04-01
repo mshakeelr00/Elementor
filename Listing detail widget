@@ -1,0 +1,1878 @@
+<?php
+
+	class ElementordealershipPartnerswidget extends \Elementor\Widget_Base {
+	
+		public function get_name(){
+			return "get_dealership_single_partners";
+		}
+		public function get_title(){
+			return "Get Dealership Single Partners";
+		}
+		public function get_icon(){
+			return "eicon-gallery-justified";
+		}
+		public function get_categories(){
+			return ['general'];
+		}
+		protected function _register_controls()
+		{
+
+
+		}
+		
+		protected function render()
+		{
+			  
+				
+		?>
+			<style>
+
+				* {box-sizing: border-box;
+				
+					font-family: 'Montserrat', sans-serif;}
+				
+				  
+				
+				  body { 
+				
+					margin: auto;
+				  }
+				  
+				  .planted-flex {
+					position: relative;
+					display: flex;
+					background: white;
+					margin: 20px 40px;
+					padding: 20px 40px;
+					border-radius: 40px;
+					text-align: center;
+				}
+				
+				h2.center-sec-h2 {
+					color: #265B2A;
+					text-align: center;
+					font-size: 30px;
+					font-weight: 600;
+				}
+				
+				.planted:after 
+				{
+					color: #04383F;
+					border-right: 5px solid;
+					content: '';
+					right: 48%;
+					top: 46px;
+					position: absolute;
+					height: 136px;
+				}
+								  
+				.driving-offset 
+				{
+					padding-left: 15px;
+				}
+				
+				div#no-of-driving {
+					padding-top: 5px;
+					font-size: 85px;
+					font-weight: bold;
+					color: #33463D;
+				}
+				
+				.years-driving {
+					font-size: 24px;
+					line-height: 1;
+					color: #33463D;
+					text-align: center;
+					font-weight: bold;
+				}
+				
+				div#no-of-trees.reduce-font-again {
+                font-size: 70px;
+                }
+				
+				  .container
+				
+				  {
+				
+					max-width: 100%;
+				
+					margin: auto;
+				
+				  }
+				
+				  .container .first-section, .container .third-section, .container .forth-section , .container .fifth-section, .container .sixth-section,
+				
+				   .container .seven-sec, .container .eight-sec, .container .nine-sec{
+				
+					margin:0 auto;
+				
+				  }
+				
+				  
+				
+				  .container .image-box {
+				
+					
+				
+					  top: -3px;
+				
+					 
+				
+					  border-radius: 9px;
+				
+				  }
+				
+				  
+				
+				  .header {
+				
+					overflow: hidden;
+				
+					background-color: white;
+				
+					padding: 10px 10px;
+				
+					
+				
+				  }
+				
+				  
+				
+				  .header a {
+				
+					float: left;
+				
+					color: black;
+				
+					text-align: center;
+				
+					padding: 12px;
+				
+					text-decoration: none;
+				
+					font-size: 16px; 
+				
+					font-weight:bold;
+				
+					line-height: 25px;
+				
+					border-radius: 4px;
+				
+				  }
+				
+				  
+				
+				  .header a.logo {
+				
+					padding-left: 50px;
+				
+					font-size: 25px;
+				
+					font-weight: bold;
+				
+				  }
+				
+				  a.logo {
+				
+					  display: flex;
+				
+					  line-height: 1.7;
+				
+				  }
+				
+				  
+				
+				  
+				
+				  .header a.active {
+				
+					background-color: dodgerblue;
+				
+					color: white;
+				
+				  }
+				
+				  
+				
+				  .header-right {
+				
+					padding-right: 50px;
+				
+					float: right;
+				
+					margin-top:12px;
+				
+				  }
+				
+				  .centered {
+				
+					position: absolute;
+				
+					top: 10%;
+				
+					left: 50%;
+				
+					transform: translate(-50%, -50%);
+				
+					
+				
+				  }
+				
+				  .planted
+				
+				  {
+				
+					background:white;
+				
+					padding:20px 40px;
+				
+					border-radius: 55px;
+				
+					  text-align: center;
+				
+				  }
+				
+				  #no-of-trees
+				
+				  {
+				
+					font-size:90px;
+				
+					font-weight:bold;
+				
+					color:#487052;
+					
+					line-height:104px;
+				
+				  }
+				  div#no-of-trees.reduce-font {
+                     font-size: 60px;
+                    }
+				div#no-of-trees.reduce-font-again {
+                     font-size: 70px;
+                    }
+				  .trees
+				
+				  {
+				
+					font-size:35px;
+				
+					color:#33463d;
+				
+					font-weight:bold;
+				
+				  }
+				
+				  .join
+				
+				  {
+				
+					font-size:27px;
+				
+					color:#04383f;
+				
+					font-weight:bold;
+				
+					line-height:2.5;
+				
+					text-align:center;
+				
+				  }
+				
+				  .red-buttons
+				
+				  {    width:100%;
+				
+					  text-align: center;
+				
+				  }
+				
+				  .inner
+				
+				  {
+				
+					  display: inline-block;
+				
+				  }
+				
+				  button.businessBtn {
+				
+					
+				
+					  padding: 20px 37px; 
+				
+					  color: white;
+				
+					  font-weight: bold;
+				
+					  font-size: 20px;
+				
+					  border: none;
+				
+					  text-transform: lowercase;
+				
+					  border-radius: 70px;
+				
+					  color: #fff;
+				
+					  background-color: #F85646;
+				
+					  border: 0;
+				
+					  cursor: pointer;
+				
+					  margin: 1em; 
+				
+				  }
+				
+				  .sort
+				
+				  {
+				
+					  margin-top:25px;
+				
+				  }
+				
+				  .sort h1
+				
+				  {
+				
+				  
+				
+					  margin-bottom:0px;
+				
+					  letter-spacing: 0.8px;
+				
+					  font-size: 22px;
+				
+					  color:white;
+				
+					  text-align:center;
+				
+				  }
+				
+				  .drop
+				
+				  {
+				
+					  text-align: center;
+				
+					  color: white;
+				
+					  font-size: 18px;
+				
+				  }
+				
+				  .column.not-used-p3 {
+						display: none;
+					}
+				
+				  .second-section .column {
+				
+					    float: left;
+						width: 33.33%;
+						padding-top: 35px;
+						text-align: center;
+						background: #04383f;
+						height: 260px;
+				
+				  }
+				
+				  .second-section .column:after {
+				
+					  content: "";
+				
+					  position: relative;
+				
+					  display: block;
+				
+					  / border-top: 31px solid red; /
+				
+					  width: 11px;
+				
+					  margin: -215px 0px 0px -18px;
+				
+					  height: 178px;
+				
+					  border-right: 5px solid white;
+				
+				  }
+				
+				  .second-section .column:last-child:after {
+				
+					display:none;
+				
+				  
+				
+				  }
+				
+				  .second-section .column:nth-child(3):after {
+				
+					margin-top: -189px; 
+				
+				  
+				
+				  }
+				
+				  .column-data
+				
+				  {
+				
+					padding:0px 40px;
+				
+				  }
+				
+				  .second-section h2 {
+				
+					  font-size: 50px;
+				
+					  font-weight: bold;
+				
+					  color: #c5dcd3;
+				
+					  margin: 8px 0;
+				
+				  }
+				
+				  .second-section p
+				
+				  {
+				
+					  font-size:18px;
+				
+					  font-weight:bold;
+				
+					  color:white;
+				
+					  margin:0px;
+				
+				  }
+				
+				  .third-section {
+				
+					  position: relative;
+				
+					  top: 40px;
+				
+					  text-align:center;
+				
+				  }
+				
+				  .third-section h2
+				
+				  {
+				
+					  text-align:center;
+				
+					  font-size:40px;
+				
+					  color:#04383f;
+				
+					  margin: 0px;
+				
+					  line-height: 1.5;
+				
+				  }
+				
+				  .testimonial-content {
+				
+					  color: #04383f;
+				
+					  font-weight: bold;
+				
+					  width: 700px;
+				
+					  margin: auto;
+				
+					  font-size: 18px;
+				
+					  margin-top: 25px;
+				
+					  line-height: 1.5;
+				
+				  }
+				
+				  .forth-section
+				
+				  {
+				
+					background:#33463d;
+				
+					margin-top:75px;
+				
+					padding:30px 0px;
+				
+					padding-bottom:60px;
+				
+				  }
+				
+				  .forth-section h2
+				
+				  {
+				
+					  text-align:center;
+				
+					  font-size:40px;
+				
+					  color:white;
+				
+					  margin: 0px;
+				
+					  line-height: 1.5;
+				
+				  }
+				
+				  .image-box {
+				
+					  padding-top: 40px;
+				
+					  width: 100%;
+				
+					  position: relative;
+				
+					  /* right: 67px; */
+				
+				  }
+				
+				  .third-section {
+				
+					  padding-bottom: 50px;
+				
+				  }
+				
+				  .fifth-section 
+				
+				  {
+				
+					background-color:#c6eff9;
+				
+					background-image: url("https://yoursite.com/images/Plant-Map.png");
+				
+					background-repeat: no-repeat;
+				
+					  background-position: center;
+				
+					height:900px;
+				
+					position: relative;
+				
+				  }
+				
+				  .pine-trees
+				
+				  {
+				
+					display:flex;
+				
+					justify-content:center;
+				
+				  }
+				
+				  .pine-trees h2
+				
+				  {
+				
+					color:#33463d;
+				
+					font-size:45px;
+				
+					margin-bottom:0px;
+				
+				  }
+				
+				  .fifth-section h3
+				
+				  {
+				
+					text-align:center;
+				
+					margin-top:0px;
+				
+					margin-bottom: 0px;
+				
+					color:#33463d;
+				
+					font-size: 24px;
+				
+				  }
+				
+				  .fifth-section-bottom
+				
+				  {
+				
+					position:absolute;
+				
+					bottom:0;
+				
+					width: 100%;
+				
+					padding-bottom:20px;
+				
+				  }
+				
+				  .sixth-section
+				
+				  {
+				
+				   background-color:#04383f;
+				
+				  }
+				
+				  .sixth-section h2
+				
+				  {
+				
+					padding-top: 40px;
+				
+					  margin-top: 0px;
+				
+					font-size:35px;
+				
+					color:white;
+				
+					text-align:center;
+				
+				  
+				
+				  }
+				
+				  .box{
+				
+						  position: relative;
+				
+						  display: inline-block; /* Make the width of box same as image */
+				
+					  }
+				
+					  .box .text{
+				
+						  padding: 15px 23px;
+				
+						  border-radius: 20px;
+				
+						  position: absolute;
+				
+						  z-index: 999;
+				
+						  margin: -10px auto;
+				
+						  left: 0;
+				
+						  right: 0;        
+				
+						  text-align: center;
+				
+						  top: 64%; /* Adjust this value to move the positioned div up and down*/
+				
+						  background: rgb(255, 255, 255);
+				
+						  
+				
+						  color: black;
+				
+						  width: 90%; /* Set the width of the positioned div */
+				
+					  }
+				
+					  .box img
+				
+					  {
+				
+						height: 370px;
+				
+					  width: 100%;
+				
+						border-radius: 5%;
+				
+					  }
+				
+					  .image-grid {
+				
+					  display: grid;
+				
+					  grid-template-columns: 1fr 1fr 1fr;
+				
+				  }
+				
+				  .grid-container {
+				
+					  max-width: 1300px;
+				
+					  margin: auto;
+				
+				  }
+				
+				  .image-grid .column {
+				
+					  margin: 22px;
+				
+				  }
+				
+				  .text-sub-heading {
+				
+					  color: #487052;
+				
+					  text-align: left;
+				
+					  font-size: 14px;
+				
+					  margin-top: 0px;
+				
+				  }
+				
+				  .text h1 {
+				
+					  font-size: 20px;
+				
+					  margin-top: 0px;
+				
+					  margin-bottom: 7px;
+				
+					  text-align: left;
+				
+				  }
+				
+				  img.blue-car-img {
+				
+					margin-top: 30px;
+				
+				}
+				
+				  .para-learn-more-btn {
+				
+					  text-align: left;
+				
+					  font-weight: bold;
+				
+					  color: black;
+				
+					  font-size: 11px;
+				
+					  margin-top:8px;
+				
+				  }
+				
+				  .sub-head-para {
+				
+					  text-align: left;
+				
+					  color: black;
+				
+					  font-size: 12px;
+				
+				  }
+				
+				  .nine-sec-row-head h2 {
+				
+					  font-size: 30px;
+				
+				  }
+				
+				  .container .image-box-outer {
+				
+					  background-color: white;
+				
+					  margin-top: -15px;
+				
+					  border-radius: 22px;
+				
+					  width: 100%;
+				
+				  }
+				
+				  .image-grid {
+				
+					  margin-left: 20px;
+				
+					  margin-right: 20px;
+				
+				  }
+				
+				
+				
+				.All-pro-Btn{
+				
+					   
+				
+					background: #f85646;
+				
+					   padding: 20px 37px; 
+				
+					   color: white;
+				
+					   font-weight: bold;
+				
+					   font-size: 25px !important;
+				
+					   border: none;
+				
+					   text-transform: uppercase;
+				
+					   padding: 1.0em 2em;
+				
+					   border-radius: 50px;
+				
+					   color: #fff;
+				
+					   background-color: #F85646; 
+				
+					   font-size: 1.1em;
+				
+					   border: 0;
+				
+					   cursor: pointer;
+				
+					   margin: 1em; 
+				
+				   }
+				
+				   .seven-sec {
+				
+				   background-color: #04383f;
+				
+				   background-image: url(https://media-public.canva.com/V0rbA/MADS40V0rbA/2/t.png);
+				
+				   background-repeat: repeat-x;
+				
+				   background-size: 64px 100px;
+				
+				}
+				
+				   .seven-sec-btn{
+				
+					   text-align: center;
+				
+				   }
+				
+				   div.eight-sec{
+				
+				   background-color:#487052;
+				
+				   padding-bottom: 20px;
+				
+				}
+				
+				.nine-sec {
+				
+				   margin-top: 1px !important;
+				
+				}
+				
+				h2.eight-sec-heading {
+				
+				   color: C6EFF9;
+				
+				   font-size: 25px;
+				
+				   text-align: center;
+				
+				   margin-top: 0px;
+				
+				   padding-top: 20px;
+				
+				}
+				
+				.form {
+				
+				   text-align: center;
+				
+				}
+				
+				.eight-sec-submit-Btn{
+				
+				
+				
+				   padding: 12px 42px;
+				
+				   color: white;
+				
+				   font-weight: bold;
+				
+				   font-size: 20px !important;
+				
+				   border: none;
+				
+				   text-transform: uppercase;
+				
+				   border-radius: 50px;
+				
+				   color: #fff;
+				
+				   background-color: #F85646;
+				
+				   border: 0;
+				
+				   cursor: pointer;
+				
+				  
+				
+				}
+				
+				.last-row-flex {
+				
+				 display: flex;
+				
+				   justify-content: center;
+				
+				   margin-top: 22px;
+				
+				}
+				
+				.eight-sec-inner-container {
+				
+				   width: 90%;
+				
+				   text-align: center;
+				
+				   margin: auto;
+				
+				}
+				
+				
+				
+				input#fname, input#lname, input#email {
+				
+				   width: 233px;
+				
+				margin-right:30px;
+				
+				   height: 42px;
+				
+				padding: 20px;
+				
+				}
+				
+				
+				
+				.follow-us {
+				
+				 line-height: 3;
+				
+				   margin-left: 64px;
+				
+				   color: white;
+				
+				   font-weight: 600;
+				
+				   font-size: 16px;
+				
+				}
+				
+				.eight-sec-p {
+				
+				   margin: auto;
+				
+				   color: white;
+				
+				   font-size: 12px;
+				
+				   margin-left: 0px;
+				
+				   margin-right: 0;
+				
+				}
+				
+				.last-row-img {
+				
+				   display: flex;
+				
+				   margin: auto;
+				
+				   margin-right: 28px;
+				
+				   margin-left: 0px !important;
+				
+				}
+				
+				.nine-sec {
+				
+				   background-color: #33463D;
+				
+				}
+				
+				.sec-nine-row-1 {
+				
+				   display: flex;
+				
+				   justify-content: center;
+				
+				}
+				
+				.nine-sec-img-1 {
+				
+				   margin: auto;
+				
+				   margin-right: 0px;
+				
+				   margin-left: 0px;}
+				
+				.nine-sec-row-head {
+				
+				   color: #FEFEFE;
+				
+				   margin-left: 0px;
+				
+				}
+				
+				.sub-col-flex {
+				
+				   display: flex !important;
+				
+				}
+				
+				.all-col-flex {
+				
+				   display: flex;
+				
+				}
+				
+				.nine-sec-container {
+				
+				   width: 50%;
+				
+				   margin: auto;
+				
+				}
+				.sub-col-2>ul {
+					padding-right: 0px !important;
+				}
+				
+				.sub-col-1 ul, .sub-col-2 ul, .col-3>ul, .col-4>ul {
+				
+				 line-height: 1.8;
+				
+				   color: white;
+				
+				   padding-right:20px;
+				
+				   font-size: 14px;
+				
+				   padding-left: 0px;
+				
+				   font-weight: 500;
+				
+				   list-style: none;
+				
+				}
+				
+				.sec-nine-row-2 {
+				
+				   padding-top: 15px;
+				
+				}
+				
+				.col-1-heading, .col-3-heading, .col-4-heading  {
+				
+				   font-weight: 600;
+				
+				   font-size: 16px;
+				
+				   padding-right: 10px;
+				
+				   color: fff;
+				
+				}
+				
+				p.footer-line {
+				
+					margin-bottom: 0;
+				
+				   font-size: 12px;
+				
+				   color: white;
+				
+				   padding-top: 20px;
+				
+				   padding-bottom: 10px;
+				
+				   text-align: center;
+				
+				}
+				
+				.col-2 {
+				
+				   margin: auto;
+				
+				}
+				
+				.sub-col-1 ul{
+				
+				
+				
+				   padding-right: 20px;
+				
+				}
+				
+				
+				/*dropdown-style*/
+				
+				.dropdown-check-list {
+				  display: inline-block;
+				}
+				span.anchor {
+					margin-bottom: 0px;
+					letter-spacing: 0.8px;
+					font-size: 22px;
+					font-weight: 600;
+					color: white; 
+					text-align: center;
+				}
+				.dropdown-check-list .anchor {
+				  position: relative;
+				  cursor: pointer;
+				  display: inline-block;
+				  padding: 5px 50px 5px 10px;
+				}
+				
+				.dropdown-check-list .anchor:after {
+					display: none;
+				  position: absolute;
+				  content: "";
+				  border-left: 2px solid black;
+				  border-top: 2px solid black;
+				  padding: 5px;
+				  right: 10px;
+				  top: 20%;
+				  -moz-transform: rotate(-135deg);
+				  -ms-transform: rotate(-135deg);
+				  -o-transform: rotate(-135deg);
+				  -webkit-transform: rotate(-135deg);
+				  transform: rotate(-135deg);
+				}
+				
+				.dropdown-check-list .anchor:active:after {
+				  right: 8px;
+				  top: 21%;
+				}
+				ul.items {
+					background-color: white;
+				}
+				
+				.dropdown-check-list ul.items {
+				  padding: 2px;
+				  display: none;
+				  margin: 0;
+				  border: 1px solid #ccc;
+				  border-top: none;
+				}
+				
+				.dropdown-check-list ul.items li {
+				  list-style: none;
+				}
+				
+				.dropdown-check-list.visible .anchor {
+				  
+				}
+				
+				.dropdown-check-list.visible .items {
+				  display: block;
+				}
+				ul.items li input[type="checkbox"] {
+					box-sizing: border-box;
+					transition: .24s;
+					/* position: absolute; */
+					top: 0;
+					left: 0;
+					background-color:white;
+					border-color: rgb(0, 0, 0);
+					width: 18px;
+					margin-right: 10px;
+					height: 18px;
+					border-width: 2px;
+					border-style: solid;
+					border-radius: 2px;
+				}
+				ul.items {
+					box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+				}
+				.dropdown-check-list {
+					display: inline-block;
+					width: 100%;
+					text-align: center;
+				}
+				ul.items {
+					text-align: left;
+					width: 50%;
+				
+					margin-left: auto !important;
+					margin-right: auto !important;
+				}
+				
+				.first-section>img {
+    height: 740px !important;
+}
+.red-buttons {
+    margin-top: 15px;
+}
+
+				
+@media screen and (max-width: 576px){
+     .third-section > h5 {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.planted-flex{
+ padding: 0px 0px !important;
+    padding-bottom: 0px !important;
+    border-radius: 20px !important;
+    width: 310px !important;
+    margin:auto !important;
+}
+.planted{
+width: 50% !important;
+}
+#no-of-trees {
+    font-size: 40px !important;
+}
+.trees {
+    font-size: 15px !important;
+}
+.driving-offset{
+width: 50%;
+}
+.elementor-widget-pws_get_dealership_single_partners .planted::after {
+    color: #04383F;
+    border-right: 2px solid;
+    content: '';
+    right: 50.5% !important;
+    top: 21% !important;
+    position: absolute;
+    height: 70px !important;
+}
+
+div#no-of-driving {
+   
+    font-size: 32px !important;
+}
+.years-driving {
+    font-size: 16px !important;
+}
+.centered {
+    width: 90% !important;
+}
+button.businessBtn {
+    padding: 15px 25px !important;
+font-size: 16px !important;
+}
+.elementor-widget-pws_get_dealership_single_partners .first-section {
+    height: 580px !important;
+    background-size: 100% 100% !important;
+}
+#no-of-trees.reduce-font {
+    font-size: 26px !important;
+}
+ div#no-of-trees.reduce-font-again {
+                     font-size: 30px !important;
+                    }
+}
+
+				
+@media screen and (min-width: 577px) and (max-width:767px){
+     .elementor-widget-pws_get_dealership_single_partners .first-section {
+    height: 600px !important;
+    background-size: 100% 100% !important;
+}
+.planted-flex{
+ padding: 0px 0px !important;
+    padding-bottom: 0px !important;
+    width: 400px !important;
+    margin: auto !important;
+    padding: 0px ;
+    border-radius: 20px !important;
+}
+.planted{
+width: 50% !important;
+}
+#no-of-trees {
+    font-size: 52px !important;
+}
+.trees {
+    font-size: 18px !important;
+}
+.driving-offset{
+width: 50%;
+}
+div#no-of-driving {
+   
+    font-size: 50px !important;
+}
+.years-driving {
+    font-size: 18px !important;
+}
+.centered {
+    width: 90% !important;
+}
+button.businessBtn {
+    padding: 15px 25px !important;
+font-size: 16px !important;
+}
+.elementor-widget-pws_get_dealership_single_partners .planted::after {
+    color: #04383F;
+    border-right: 2px solid;
+    content: '';
+    right: 50% !important;
+    top: 18% !important;
+    position: absolute;
+    height: 90px !important;
+}
+.planted {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+div#no-of-driving {
+    padding-top: 0px !important;
+    line-height: 46px !important;
+}
+.years-driving {
+    padding-bottom: 0px !important;
+}
+.planted-flex {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+.years-driving {
+    padding-top: 15px;
+}
+#no-of-trees.reduce-font {
+    font-size: 32px !important;
+}
+ div#no-of-trees.reduce-font-again {
+                     font-size: 35px !important;
+                    }
+}
+
+				
+@media screen and (min-width: 768px) and (max-width:1024px){
+.planted-flex{
+ padding: 0px 0px !important;
+    padding-bottom: 0px !important;
+    width: 450px !important;
+    margin: auto !important;
+    padding: 0px ;
+    border-radius: 20px !important;
+}
+.planted{
+width: 50% !important;
+}
+#no-of-trees {
+    font-size: 62px !important;
+}
+.trees {
+    font-size: 20px !important;
+}
+.driving-offset{
+width: 50%;
+}
+div#no-of-driving {
+   
+    font-size: 60px !important;
+}
+.years-driving {
+    font-size: 20px !important;
+}
+.centered {
+    width: 90% !important;
+}
+button.businessBtn {
+    padding: 15px 25px !important;
+font-size: 16px !important;
+}
+.elementor-widget-pws_get_dealership_single_partners .planted::after {
+    color: #04383F;
+    border-right: 2px solid;
+    content: '';
+    right: 50% !important;
+    top: 17% !important;
+    position: absolute;
+    height: 91px !important;
+}
+.planted {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+div#no-of-driving {
+    padding-top: 0px !important;
+    line-height: 46px !important;
+}
+.years-driving {
+    padding-bottom: 0px !important;
+}
+.planted-flex {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+.trees {
+    margin-top: 15px !important;
+}
+.years-driving {
+    margin-top: 10px !important;
+}
+.elementor-widget-pws_get_dealership_single_partners .first-section>img {
+    height: 550px !important;
+}
+
+.elementor-widget-pws_get_dealership_single_partners .centered {
+    top: 24% !important;
+}
+#no-of-trees.reduce-font {
+    font-size: 35px !important;
+}
+ div#no-of-trees.reduce-font-again {
+                     font-size: 40px !important;
+                    }
+}
+@media screen and (min-width: 1025px) and (max-width:1274px){
+      .elementor-widget-pws_get_dealership_single_partners .first-section>img {
+    height: 700px !important;
+}
+
+.elementor-widget-pws_get_dealership_single_partners .centered {
+    top: 27% !important;
+}
+    
+.planted-flex{
+ padding: 20px 20px !important;
+    padding-bottom: 0px !important;
+    width: 650px !important;
+    margin: auto !important;
+    padding: 0px ;
+    border-radius: 40px !important;
+}
+.planted{
+width: 50% !important;
+}
+#no-of-trees {
+    font-size: 85px !important;
+}
+.trees {
+    font-size: 32px !important;
+}
+.driving-offset{
+width: 50%;
+}
+div#no-of-driving {
+   
+    font-size: 70px !important;
+}
+.years-driving {
+    font-size: 28px !important;
+}
+.centered {
+    width: 90% !important;
+}
+button.businessBtn {
+    padding: 15px 25px !important;
+font-size: 16px !important;
+}
+.elementor-widget-pws_get_dealership_single_partners .planted::after {
+    color: #04383F;
+    border-right: 4px solid;
+    content: '';
+    right: 50% !important;
+    top: 17% !important;
+    position: absolute;
+    height: 150px !important;
+}
+.planted {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+div#no-of-driving {
+    padding-top: 0px !important;
+    line-height: 46px !important;
+}
+.years-driving {
+    padding-bottom: 0px !important;
+}
+.planted-flex {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+}
+.trees {
+    margin-top: 40px !important;
+}
+.years-driving {
+    margin-top: 45px !important;
+}
+#no-of-trees.reduce-font {
+    font-size: 50px !important;
+}
+ div#no-of-trees.reduce-font-again {
+                     font-size: 60px !important;
+                    }
+}
+
+@media only screen and (min-width: 1275px){
+.years-driving {
+    margin: 0 40px;
+}
+.planted-flex {
+   
+    padding: 20px 10px;
+}
+.planted::after {
+   
+    right: 49% !important;
+   
+    height: 155px !important;
+}
+}
+			</style>
+			<?php
+				
+				if(isset($_GET['chash']))
+				{
+					$partner_id = $_GET['chash'];
+					$pname = $_GET['pname'];
+				}
+				else
+				{
+					$partner_id = '9ac07060-1247-11ec-9bb6-26b75831b628';
+					$pname = 'Patriot-Subaru';
+				}
+			
+				// getting partner informations
+				
+				$partnerurl = 'https://i4hntn0rua.execute-api.us-east-1.amazonaws.com/prod/partners/'.$partner_id; 
+				$partner_page = file_get_contents($partnerurl);
+				$partner_details = json_decode($partner_page);
+				
+			
+				
+				
+				foreach($partner_details as $partnerdetails)
+				{
+				
+					 $partner_final_details = [];
+					foreach($partnerdetails as $partnerdetail)
+					{
+						
+						$partner_final_details[] .=  $partnerdetail->S;
+					}
+					
+				}
+				
+					$newIndex;
+				  $newArray=array();
+			        foreach($partner_details as $partnerdetails)
+			        {    
+                    
+                     foreach($partnerdetails as $key=>$value)
+                     {
+                         
+                     $newIndex = $key;
+                     $newArray[] = $newIndex;
+                     //echo $newIndex . "<br>";
+        
+                     }
+                    }
+                    
+                     $final_data = array_combine($newArray, $partner_final_details);
+             
+        //             echo "<pre>";
+        //             print_r ($final_data);
+				    // echo "</pre>";
+			
+				// getting partner order summary
+				
+				$partnerorderurl = 'https://i4hntn0rua.execute-api.us-east-1.amazonaws.com/prod/orders-summary/'.$partner_id; 
+				$partner_order_page = file_get_contents($partnerorderurl);
+				$partner_order_details = json_decode($partner_order_page);
+				
+				
+				$total_trees_planted = $partner_order_details->totalQuantity;
+								
+								
+				$PoundsofTotalCarbonOffset1 = $total_trees_planted * 679.7;
+								
+				$PoundsofTotalCarbonOffset2 = $PoundsofTotalCarbonOffset1 / 1000000;   // converting into million and then making it in round
+								
+				$PoundsofTotalCarbonOffset = number_format($PoundsofTotalCarbonOffset2, 2); // 123,456.7890
+								 
+			//	$YearsofDriving = round($PoundsofTotalCarbonOffset1 / 10141.3);
+				$YearsofDriving = round($total_trees_planted / 15);
+								
+				$MilesofAirTravel = round($PoundsofTotalCarbonOffset1 / 53.3);
+								
+				$DaysofWorkCreated = $total_trees_planted / 100 ;
+			
+			?>
+
+				<div class="first-section">
+				  <img src="https://carbonoffsetcompany.org/wp-content/uploads/2021/11/Desktop-dealership-GIF-repeated-once.gif" alt="" style="width:100%; height:100%;">
+				 
+				  <div class="centered">
+					<div class="center-sec-img" style="text-align:center;"><a href="<?php echo $final_data['website']; ?>" target="_blank"><img src="<?php echo $final_data['logo']; ?>" width="470px"></a></div>
+					 <h2 class="center-sec-h2">Your Eco-Friendly Dealership!</h2>
+					 <div class="planted-flex">
+					<div class="planted">
+					    <?php// $total_trees_planted1 = 1000000; ?>
+						<div id="no-of-trees" class="<?php if($total_trees_planted > 999999){ echo "reduce-font";} elseif ($total_trees_planted > 99999 && $total_trees_planted < 999999){ echo "reduce-font-again";}  ?>"><?php echo number_format($total_trees_planted); ?></div>
+						<div class="trees">Trees planted</div>
+					</div> 
+					<div class="driving-offset">
+					  <div id="no-of-driving"><?php echo number_format($YearsofDriving);?></div>
+					  <div class="years-driving">Years of Driving Offset</div>
+				  </div>
+				  </div>
+					<!--<div class="join">We plant 15 trees / vehicle sold.</div>-->
+				
+					<div class="red-buttons">
+					 <div class="inner">
+					     <a href="<?php echo $final_data['link1']; ?>" target="_blank">
+					         <button class="businessBtn" >NEW</button>
+					         </a></div>
+						<div class="inner">
+						<a href="<?php echo $final_data['link2']; ?>" target="_blank">
+						<button class="businessBtn" >USED</button>
+						</a></div>
+					</div>
+ 
+				
+				</div>
+				</div>
+				
+				<div class="second-section">
+
+				  <div class="column">
+					<div class="column-data">
+					<h2><?php echo $PoundsofTotalCarbonOffset;?>M</h2>
+					<p>Pounds of Carbon Offset</p>
+					<img src="https://carbonoffsetcompany.org/wp-content/uploads/2021/08/Carbon-icon.png" alt="Forest" style="width:120px">
+					</div>
+				  </div>
+				  <div class="column">
+				  <div class="column-data">
+					<h2 id="no-of-days"><?php echo number_format($DaysofWorkCreated);?></h2>
+					<p>Days of Work Provided</p>
+					<img src="https://carbonoffsetcompany.org/wp-content/uploads/2021/08/Employment-Created-Icon.png" alt="Forest" style="width:120px">
+				  </div>
+				  </div>
+				  <div class="column not-used-p3">
+				  <div class="column-data">$MilesofAirTravel
+					<h2 id="no-of-years"><?php echo number_format($YearsofDriving);?></h2>
+					<p>Years of Driving</p>
+					<img src="https://carbonoffsetcompany.org/wp-content/uploads/2021/08/blue-car.png" alt="Forest" style="width:120px" class="blue-car-img">
+				  </div>
+				  </div>
+				  <div class="column">
+				  <div class="column-data">
+					<h2 id="no-of-miles"><?php echo number_format($MilesofAirTravel);?></h2>
+					<p>Miles of Air Travel</p>
+					<img src="https://carbonoffsetcompany.org/wp-content/uploads/2021/08/Airplane-icon.png" alt="Forest" style="width:120px">
+				  </div>
+				  </div>
+
+				</div>
+
+				<div class="third-section">
+				  <h2>Why we think it's important to</h2>  
+				 <h2 style="color:#487052;">align profit with the planet.</h2>  
+				 <div class="testimonial-content"> <?php echo $final_data['quote']; ?></div>
+			
+				   <h5 style="color: #487052;
+				font-weight: bold;
+				font-size: 19px;"><?php echo $final_data['quote_contact']; ?> <?php if(!empty($final_data['quote_title'])){?><?php echo $final_data['quote_title']; } ?></h5>  
+			</div>
+			
+			
+					<!--------replace these-------->
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-82e6737 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="82e6737" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-515dad1" data-id="515dad1" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-38625f4 elementor-widget elementor-widget-heading" data-id="38625f4" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Our planet is in rough shape.</h2>		</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+		
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-6487298 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="6487298" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-66b87af" data-id="66b87af" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-acb5ff4 elementor-widget elementor-widget-image" data-id="acb5ff4" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img title="screen" alt="screen" data-src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/elementor/thumbs/screen-pmmhir8vlxmcrxul6k7zuptmcv1c7see05z5eqxh80.jpg" class=" lazyloaded" src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/elementor/thumbs/screen-pmmhir8vlxmcrxul6k7zuptmcv1c7see05z5eqxh80.jpg"><noscript><img src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/elementor/thumbs/screen-pmmhir8vlxmcrxul6k7zuptmcv1c7see05z5eqxh80.jpg" title="screen" alt="screen" /></noscript>															</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-5cf08ce" data-id="5cf08ce" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-99113db elementor-widget elementor-widget-image" data-id="99113db" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img title="global climate changeglobal climate changeglobal climate change" alt="disasters brought about by global climate change" data-src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/elementor/thumbs/gallery-img-pmmhh5wq11fv3q5vhdfr4mai4cvy692rga6j4vahrk.jpg" class=" lazyloaded" src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/elementor/thumbs/gallery-img-pmmhh5wq11fv3q5vhdfr4mai4cvy692rga6j4vahrk.jpg"><noscript><img src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/elementor/thumbs/gallery-img-pmmhh5wq11fv3q5vhdfr4mai4cvy692rga6j4vahrk.jpg" title="global climate changeglobal climate changeglobal climate change" alt="disasters brought about by global climate change" /></noscript>															</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-1dec709" data-id="1dec709" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-c3a8e18 elementor-widget elementor-widget-image" data-id="c3a8e18" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img title="screen (1)" alt="screen (1)" data-src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/elementor/thumbs/screen-1-pmmhiwvwqxu2plme9mnr9oedx69jhz0s0xw2aep46o.jpg" class=" lazyloaded" src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/elementor/thumbs/screen-1-pmmhiwvwqxu2plme9mnr9oedx69jhz0s0xw2aep46o.jpg"><noscript><img src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/elementor/thumbs/screen-1-pmmhiwvwqxu2plme9mnr9oedx69jhz0s0xw2aep46o.jpg" title="screen (1)" alt="screen (1)" /></noscript>															</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+		
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-5875f3e elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="5875f3e" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-df28c9d" data-id="df28c9d" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-79b49a4 elementor-hidden-mobile elementor-widget elementor-widget-heading" data-id="79b49a4" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Automobiles produce A LOT of CO2.</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-b19145e elementor-hidden-desktop elementor-hidden-tablet elementor-widget elementor-widget-heading" data-id="b19145e" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Automobiles produce<br><span style="font-size:30px; font-weight:900;"> A LOT</span> of CO2.</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-a072899 elementor-widget elementor-widget-heading" data-id="a072899" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<p class="elementor-heading-title elementor-size-default">Even all-electric vehicles produce CO2. Large amounts of CO2 are released during production, and on an ongoing basis because of the non-renewable resources used to create the electricity to charge the vehicle. We are moving in the right direction, however there is no perfect solution yet. </p>		</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+		
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-4699c69 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="4699c69" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-2e1e4ea" data-id="2e1e4ea" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-fc3d013 elementor-widget elementor-widget-heading" data-id="fc3d013" data-element_type="widget" id="width" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">An average vehicle emits 10,141.3 lbs of carbon per year...
+
+</h2>		</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-4a1dd64" data-id="4a1dd64" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-3401bb0 elementor-widget elementor-widget-image" data-id="3401bb0" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img title="Red car icon" alt="Red car icon" data-src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/elementor/thumbs/Red-car-icon-pmmhhql5zi2ecela4774n6qcqf5qa03uzm3akzk71c.png" class=" lazyloaded" src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/elementor/thumbs/Red-car-icon-pmmhhql5zi2ecela4774n6qcqf5qa03uzm3akzk71c.png"><noscript><img src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/elementor/thumbs/Red-car-icon-pmmhhql5zi2ecela4774n6qcqf5qa03uzm3akzk71c.png" title="Red car icon" alt="Red car icon" /></noscript>															</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+		
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-c7f66de elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="c7f66de" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-286ea1a" data-id="286ea1a" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-4470e7c elementor-hidden-mobile elementor-widget elementor-widget-heading" data-id="4470e7c" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">In fact, the transportation industry</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-31a92b9 elementor-hidden-desktop elementor-hidden-tablet elementor-widget elementor-widget-heading" data-id="31a92b9" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">In fact, the transportation industry<span style="color:#04383F"> leads economic sectors in CO2 pollution, </span>and automobiles are the biggest reason.</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-cb418a7 elementor-hidden-mobile elementor-widget elementor-widget-heading" data-id="cb418a7" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">leads economic sectors in CO2 pollution,</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-77df3d6 elementor-hidden-mobile elementor-widget elementor-widget-heading" data-id="77df3d6" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">and automobiles are the biggest reason.
+</h2>		</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-b74e766 elementor-section-full_width elementor-hidden-desktop elementor-hidden-tablet elementor-section-height-default elementor-section-height-default" data-id="b74e766" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-982a1a3" data-id="982a1a3" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-cfd4496 elementor-widget elementor-widget-image" data-id="cfd4496" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="1012" height="600" alt="" data-srcset="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-1-e1638388958254.jpg 1012w, https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-1-e1638388958254-300x178.jpg 300w, https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-1-e1638388958254-768x455.jpg 768w" data-src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-1-e1638388958254.jpg" data-sizes="(max-width: 1012px) 100vw, 1012px" class="attachment-full size-full lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><noscript><img width="1012" height="600" src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-1-e1638388958254.jpg" class="attachment-full size-full" alt="" srcset="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-1-e1638388958254.jpg 1012w, https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-1-e1638388958254-300x178.jpg 300w, https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-1-e1638388958254-768x455.jpg 768w" sizes="(max-width: 1012px) 100vw, 1012px" /></noscript>															</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+		
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-5e608c3 elementor-section-full_width elementor-hidden-mobile elementor-section-height-default elementor-section-height-default" data-id="5e608c3" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-fd37bd7" data-id="fd37bd7" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-5a58a7f elementor-widget elementor-widget-image" data-id="5a58a7f" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="1920" height="600" alt="" data-srcset="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E.jpg 1920w, https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-300x94.jpg 300w, https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-1024x320.jpg 1024w, https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-768x240.jpg 768w, https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-1536x480.jpg 1536w" data-src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E.jpg" data-sizes="(max-width: 1920px) 100vw, 1920px" class="attachment-full size-full lazyloaded" src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E.jpg" sizes="(max-width: 1920px) 100vw, 1920px" srcset="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E.jpg 1920w, https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-300x94.jpg 300w, https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-1024x320.jpg 1024w, https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-768x240.jpg 768w, https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-1536x480.jpg 1536w"><noscript><img width="1920" height="600" src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E.jpg" class="attachment-full size-full" alt="" srcset="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E.jpg 1920w, https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-300x94.jpg 300w, https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-1024x320.jpg 1024w, https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-768x240.jpg 768w, https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/12/82B6EA10-09C2-411A-987D-C19791D9970E-1536x480.jpg 1536w" sizes="(max-width: 1920px) 100vw, 1920px" /></noscript>															</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+		
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-3e614c1 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="3e614c1" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-35e401e" data-id="35e401e" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-9e98d86 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="9e98d86" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-4d89a6a" data-id="4d89a6a" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-8f3fedd elementor-widget elementor-widget-heading" data-id="8f3fedd" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">So we now offer you to<br><span style="color: #2F7633; font-size: 40px;font-weight:800; "> Drive Carbon Neutral </span></h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-9a2540b elementor-widget elementor-widget-heading" data-id="9a2540b" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">for just $1.25 per month</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-81a757b elementor-widget elementor-widget-theme-site-logo elementor-widget-image" data-id="81a757b" data-element_type="widget" data-widget_type="theme-site-logo.default">
+				<div class="elementor-widget-container">
+																<a href="https://carbonoffsetcompany.ansaritechdev.com">
+							<img title="cropped-cropped-Logo.png" alt="cropped-cropped-Logo.png" data-src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/elementor/thumbs/cropped-cropped-Logo-pmmhffvdw08tp1z08bth7trx8vkc20p0lg8wb0u30a.png" class=" lazyloaded" src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/elementor/thumbs/cropped-cropped-Logo-pmmhffvdw08tp1z08bth7trx8vkc20p0lg8wb0u30a.png"><noscript><img src="https://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/elementor/thumbs/cropped-cropped-Logo-pmmhffvdw08tp1z08bth7trx8vkc20p0lg8wb0u30a.png" title="cropped-cropped-Logo.png" alt="cropped-cropped-Logo.png" /></noscript>								</a>
+															</div>
+				</div>
+				<div class="elementor-element elementor-element-bb429a1 elementor-widget elementor-widget-heading" data-id="bb429a1" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">plants trees to offset<br>
+your driving emissions!</h2>		</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<div class="elementor-element elementor-element-8b00d83 elementor-widget elementor-widget-spacer" data-id="8b00d83" data-element_type="widget" data-widget_type="spacer.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-spacer">
+			<div class="elementor-spacer-inner"></div>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-dec6d5f elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="dec6d5f" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-4781cb5" data-id="4781cb5" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-96e7927 elementor-widget elementor-widget-heading" data-id="96e7927" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h3 class="elementor-heading-title elementor-size-default"><a href="<?php echo esc_url(home_url()); ?>/partners-forms-dashboard/?coc=<?php echo $pname; ?>&amp;url=<?php echo $final_data['logo']; ?>" target="_blank">Sign up here</a></h3>		</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				 
+		<?php 		 
+		
+		}
+	} 
+	
