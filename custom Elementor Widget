@@ -1,0 +1,3441 @@
+<?php
+
+class ElementorPostswidget extends \Elementor\Widget_Base {
+
+	
+
+		public function get_name(){
+
+			return "get_all_partners"; //change to your widget name
+
+		}
+
+		public function get_title(){
+
+			return "Get All Partners"; //Widget name display in list
+
+		}
+
+		public function get_icon(){
+
+			return "eicon-gallery-justified";  //widget icon
+
+		}
+
+		public function get_categories(){
+
+			return ['general'];   //widget category
+
+		}
+
+		protected function _register_controls(){
+
+
+			$this->add_control('postsnooffset', ['label'=>'Enter No of Posts offset','type'=>Elementor\Controls_Manager::NUMBER, 'input_type'=> 'number', 'default'=> '0']);
+
+			$this->end_controls_section();*/
+
+			
+
+			// control 1
+
+			$this->start_controls_section('content_section',['label'=>'Content', 'tab'=>\Elementor\Controls_Manager::TAB_CONTENT,]);
+
+			$this->add_control('ordersummary', [
+
+			
+
+				'label'=>'API Call Back For All Partner Orders',
+
+				'type'=>Elementor\Controls_Manager::URL, 
+
+				'placeholder' => __( 'https://your-link.com', 'plugin-domain' ),
+
+				'show_external' => true,
+
+				'default' => [
+
+					'url' => '',
+
+					'is_external' => true,
+
+					'nofollow' => true,
+
+				],
+
+				
+
+				]
+
+				
+
+				);
+
+			$this->end_controls_section();
+
+			
+
+			
+
+			// control 2
+
+			$this->start_controls_section('content_section',['label'=>'Content', 'tab'=>\Elementor\Controls_Manager::TAB_CONTENT,]);
+
+			$this->add_control('pagetagline', ['label'=>'Page Tag Line','type'=>Elementor\Controls_Manager::TEXT, 'input_type'=> 'text']);
+
+			$this->end_controls_section();
+
+			
+
+			
+
+			// control 3
+
+			$this->start_controls_section('content_section',['label'=>'Content', 'tab'=>\Elementor\Controls_Manager::TAB_CONTENT,]);
+
+			$this->add_control('businesslink', [
+
+			
+
+				'label'=>'Business Page Link',
+
+				'type'=>Elementor\Controls_Manager::URL, 
+
+				'placeholder' => __( 'https://your-link.com', 'plugin-domain' ),
+
+				'show_external' => true,
+
+				'default' => [
+
+					'url' => '',
+
+					'is_external' => true,
+
+					'nofollow' => true,
+
+				],
+
+				
+
+				]
+
+				
+
+				);
+
+			$this->end_controls_section();
+
+
+
+			// control 4
+
+			$this->start_controls_section('content_section',['label'=>'Content', 'tab'=>\Elementor\Controls_Manager::TAB_CONTENT,]);
+
+			$this->add_control('indlink', 
+
+				[
+
+				
+
+					'label'=>'Individual Link',
+
+					'type'=>Elementor\Controls_Manager::URL, 
+
+					'placeholder' => __( 'https://your-link.com', 'plugin-domain' ),
+
+					'show_external' => true,
+
+					'default' => [
+
+						'url' => '',
+
+						'is_external' => true,
+
+						'nofollow' => true,
+
+					],
+
+					
+
+					]
+
+					);
+
+					
+
+			$this->end_controls_section();
+
+		
+
+			// control 5
+
+			$this->start_controls_section('content_section',['label'=>'Content', 'tab'=>\Elementor\Controls_Manager::TAB_CONTENT,]);
+
+			$this->add_control(
+
+				'section_background_image',
+
+				[
+
+					'label' => __( 'Choose Background Image', 'plugin-domain' ),
+
+					'type' => \Elementor\Controls_Manager::MEDIA,
+
+					'default' => [
+
+						'url' => \Elementor\Utils::get_placeholder_image_src(),
+
+					],
+
+				]
+
+			);
+
+					
+
+			$this->end_controls_section();
+
+			
+
+			// Control 6
+
+			$this->start_controls_section('content_section',['label'=>'Content', 'tab'=>\Elementor\Controls_Manager::TAB_CONTENT,]);
+
+			$this->add_control('allpartners', [
+
+			
+
+				'label'=>'Api Call Back To Display All Partners',
+
+				'type'=>Elementor\Controls_Manager::URL, 
+
+				'placeholder' => __( 'https://your-link.com', 'plugin-domain' ),
+
+				'show_external' => true,
+
+				'default' => [
+
+					'url' => '',
+
+					'is_external' => true,
+
+					'nofollow' => true,
+
+				],
+
+				
+
+				]
+
+				
+
+				);
+
+			$this->end_controls_section();
+
+			
+
+
+
+		}
+
+		protected function render(){
+
+			 $atts = $this->get_settings_for_display();
+
+				 $page_tagline = $atts['pagetagline'];
+
+				 $b_link = $atts['businesslink'];
+
+				 $ind_link = $atts['indlink'];
+
+				 $ordersummary = $atts['ordersummary'];
+
+				 $section_backgroundimage = $atts['section_background_image'];
+
+				  $all_partners = $atts['allpartners'];
+
+				 
+
+				 
+
+				//calculation if you have any
+
+				//calling api to get data
+
+				if(!empty($ordersummary['url']))
+
+				 {
+
+				   $homepage = file_get_contents($ordersummary['url']);
+
+				 }
+
+				 else
+
+				 {
+
+				 	$homepage = file_get_contents('');
+
+				 }
+
+				 
+
+				$total_order_summary = json_decode($homepage);
+
+			
+				$total_trees_planted = $total_order_summary->totalQuantity;
+
+				
+
+				$PoundsofTotalCarbonOffset1 = $total_trees_planted * 679.7;
+				
+
+				$PoundsofTotalCarbonOffset2 = $PoundsofTotalCarbonOffset1 / 1000000;   // converting into million and then making it in round
+
+				
+
+				$PoundsofTotalCarbonOffset = number_format($PoundsofTotalCarbonOffset2, 2); // 123,456.7890
+
+				 
+
+			//	$YearsofDriving = round($PoundsofTotalCarbonOffset1 / 10141.3);
+                $YearsofDriving = round($total_trees_planted / 15);
+				
+
+				$MilesofAirTravel = round($PoundsofTotalCarbonOffset1 / 53.3);
+				 
+				 $MilesofAirTravel1 = $MilesofAirTravel / 1000000;
+				 
+				 $MilesofAirTravel2 = number_format ($MilesofAirTravel1, 2);
+
+
+				$DaysofWorkCreated = $total_trees_planted / 100 ;
+
+				 
+
+			 ?>
+
+			 
+
+			 //widget out put styles
+
+			 <style>
+
+
+
+* {box-sizing: border-box;
+
+
+
+    font-family: 'Montserrat', sans-serif;}
+
+
+
+  
+
+
+
+  body { 
+
+
+
+    margin: auto;
+
+
+
+    
+
+
+
+  }
+
+
+
+  .container
+
+
+
+  {
+
+
+
+    max-width: 100%;
+
+
+
+    margin: auto;
+
+
+
+  }
+
+
+
+  .container .first-section, .container .third-section, .container .forth-section , .container .fifth-section, .container .sixth-section,
+
+
+
+   .container .seven-sec, .container .eight-sec, .container .nine-sec{
+
+
+
+    margin:0 auto;
+
+
+
+  }
+
+
+
+  
+
+
+
+  .container .image-box {
+
+
+
+    
+
+
+
+      top: -3px;
+
+
+
+     
+
+
+
+      border-radius: 9px;
+
+
+
+  }
+
+
+
+  
+
+
+
+  .header {
+
+
+
+    overflow: hidden;
+
+
+
+    background-color: white;
+
+
+
+    padding: 10px 10px;
+
+
+
+    
+
+
+
+  }
+
+
+
+  
+
+
+
+  .header a {
+
+
+
+    float: left;
+
+
+
+    color: black;
+
+
+
+    text-align: center;
+
+
+
+    padding: 12px;
+
+
+
+    text-decoration: none;
+
+
+
+    font-size: 16px; 
+
+
+
+    font-weight:bold;
+
+
+
+    line-height: 25px;
+
+
+
+    border-radius: 4px;
+
+
+
+  }
+
+
+
+  
+
+
+
+  .header a.logo {
+
+
+
+    padding-left: 50px;
+
+
+
+    font-size: 25px;
+
+
+
+    font-weight: bold;
+
+
+
+  }
+
+
+
+  a.logo {
+
+
+
+      display: flex;
+
+
+
+      line-height: 1.7;
+
+
+
+  }
+
+
+
+  
+
+
+
+  
+
+
+
+  .header a.active {
+
+
+
+    background-color: dodgerblue;
+
+
+
+    color: white;
+
+
+
+  }
+
+
+
+  
+
+
+
+  .header-right {
+
+
+
+    padding-right: 50px;
+
+
+
+    float: right;
+
+
+
+    margin-top:12px;
+
+
+
+  }
+
+
+
+  .centered {
+
+
+
+    position: absolute;
+
+
+
+    top: 45%;
+
+
+
+    left: 50%;
+
+
+
+    transform: translate(-50%, -50%);
+
+
+
+    
+
+
+
+  }
+
+
+
+  .planted
+
+
+
+  {
+
+
+
+    background:white;
+
+
+
+    padding:20px 40px;
+
+
+
+    border-radius: 55px;
+
+
+
+      text-align: center;
+
+
+
+  }
+
+
+
+  #no-of-trees
+
+
+
+  {
+
+
+
+    font-size:100px;
+
+
+
+    font-weight:bold;
+
+
+
+    color:#487052;
+
+	
+
+	line-height:104px;
+
+
+
+  }
+
+
+
+  .trees
+
+
+
+  {
+
+
+
+    font-size:35px;
+
+
+
+    color:#33463d;
+
+
+
+    font-weight:bold;
+
+
+
+  }
+
+
+
+  .join
+
+
+
+  {
+
+
+
+    font-size:27px;
+
+
+
+    color:#04383f;
+
+
+
+    font-weight:bold;
+
+
+
+    line-height:2.5;
+
+
+
+    text-align:center;
+
+
+
+  }
+
+
+
+  .red-buttons
+
+
+
+  {    width:100%;
+
+
+
+      text-align: center;
+
+
+
+  }
+
+
+
+  .inner
+
+
+
+  {
+
+
+
+      display: inline-block;
+
+
+
+  }
+
+
+
+  button.businessBtn {
+
+
+
+    
+
+
+
+      padding: 20px 37px; 
+
+
+
+      color: white;
+
+
+
+      font-weight: bold;
+
+
+
+      font-size: 20px;
+
+
+
+      border: none;
+
+
+
+      text-transform: lowercase;
+
+
+
+      border-radius: 70px;
+
+
+
+      color: #fff;
+
+
+
+      background-color: #F85646;
+
+
+
+      border: 0;
+
+
+
+      cursor: pointer;
+
+
+
+      margin: 1em; 
+
+
+
+  }
+
+
+
+  .sort
+
+
+
+  {
+
+
+
+      margin-top:25px;
+
+
+
+  }
+
+
+
+  .sort h1
+
+
+
+  {
+
+
+
+  
+
+
+
+      margin-bottom:0px;
+
+
+
+      letter-spacing: 0.8px;
+
+
+
+      font-size: 22px;
+
+
+
+      color:white;
+
+
+
+      text-align:center;
+
+
+
+  }
+
+
+
+  .drop
+
+
+
+  {
+
+
+
+      text-align: center;
+
+
+
+      color: white;
+
+
+
+      font-size: 18px;
+
+
+
+  }
+
+
+
+  
+
+
+
+  .second-section .column {
+
+
+
+    float: left;
+
+
+
+    width: 25%;
+
+
+
+    padding-top: 35px;
+
+
+
+    text-align:center;
+
+
+
+    background:#04383f;
+
+
+
+    height:260px;
+
+
+
+  }
+
+
+
+  .second-section .column:after {
+
+
+
+      content: "";
+
+
+
+      /*position: relative;*/
+
+
+
+      display: block;
+
+
+
+      / border-top: 31px solid red; /
+
+
+
+      width: 11px;
+
+
+
+      margin: -215px 0px 0px -18px;
+
+
+
+      height: 178px;
+
+
+
+      border-right: 5px solid white;
+
+
+
+  }
+
+
+
+  .second-section .column:last-child:after {
+
+
+
+    display:none;
+
+
+
+  
+
+
+
+  }
+
+
+
+  .second-section .column:nth-child(3):after {
+
+
+
+    margin-top: -189px; 
+
+
+
+  
+
+
+
+  }
+
+
+
+  .column-data
+
+
+
+  {
+
+
+
+    padding:0px 40px;
+
+
+
+  }
+
+
+
+  .second-section h2 {
+
+
+
+      font-size: 50px;
+
+
+
+      font-weight: bold;
+
+
+
+      color: #c5dcd3;
+
+
+
+      margin: 8px 0;
+
+
+
+  }
+
+
+
+  .second-section p
+
+
+
+  {
+
+
+
+      font-size:18px;
+
+
+
+      font-weight:bold;
+
+
+
+      color:white;
+
+
+
+      margin:0px;
+
+
+
+  }
+
+
+
+  .third-section {
+
+
+
+      position: relative;
+
+
+
+      top: 40px;
+
+
+
+      text-align:center;
+
+
+
+  }
+
+
+
+  .third-section h2
+
+
+
+  {
+
+
+
+      text-align:center;
+
+
+
+      font-size:40px;
+
+
+
+      color:#04383f;
+
+
+
+      margin: 0px;
+
+
+
+      line-height: 1.5;
+
+
+
+  }
+
+
+
+  .testimonial-content {
+
+
+
+      color: #04383f;
+
+
+
+      font-weight: bold;
+
+
+
+      width: 700px;
+
+
+
+      margin: auto;
+
+
+
+      font-size: 18px;
+
+
+
+      margin-top: 25px;
+
+
+
+      line-height: 1.5;
+
+
+
+  }
+
+
+
+  .forth-section
+
+
+
+  {
+
+
+
+    background:#33463d;
+
+
+
+    margin-top:75px;
+
+
+
+    padding:30px 0px;
+
+
+
+    padding-bottom:60px;
+
+
+
+  }
+
+
+
+  .forth-section h2
+
+
+
+  {
+
+
+
+      text-align:center;
+
+
+
+      font-size:40px;
+
+
+
+      color:white;
+
+
+
+      margin: 0px;
+
+
+
+      line-height: 1.5;
+
+
+
+  }
+
+
+
+  .image-box {
+
+
+
+      padding-top: 40px;
+
+
+
+      width: 100%;
+
+
+
+      position: relative;
+
+
+
+      /* right: 67px; */
+
+
+
+  }
+
+
+
+  .third-section {
+
+
+
+      padding-bottom: 50px;
+
+
+
+  }
+
+
+
+  .fifth-section 
+
+
+
+  {
+
+
+
+    background-color:#c6eff9;
+
+
+
+    background-image: url("http://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/08/COC-Branded-Where-We-Plant-Map.png");
+
+
+
+    background-repeat: no-repeat;
+
+
+
+      background-position: center;
+
+
+
+    height:900px;
+
+
+
+    position: relative;
+
+
+
+  }
+
+
+
+  .pine-trees
+
+
+
+  {
+
+
+
+    display:flex;
+
+
+
+    justify-content:center;
+
+
+
+  }
+
+
+
+  .pine-trees h2
+
+
+
+  {
+
+
+
+    color:#33463d;
+
+
+
+    font-size:45px;
+
+
+
+    margin-bottom:0px;
+
+
+
+  }
+
+
+
+  .fifth-section h3
+
+
+
+  {
+
+
+
+    text-align:center;
+
+
+
+    margin-top:0px;
+
+
+
+    margin-bottom: 0px;
+
+
+
+    color:#33463d;
+
+
+
+    font-size: 24px;
+
+
+
+  }
+
+
+
+  .fifth-section-bottom
+
+
+
+  {
+
+
+
+    position:absolute;
+
+
+
+    bottom:0;
+
+
+
+    width: 100%;
+
+
+
+    padding-bottom:20px;
+
+
+
+  }
+
+
+
+  .sixth-section
+
+
+
+  {
+
+
+
+   background-color:#04383f;
+
+
+
+  }
+
+
+
+  .sixth-section h2
+
+
+
+  {
+
+
+
+    padding-top: 40px;
+
+
+
+      margin-top: 0px;
+
+
+
+    font-size:35px;
+
+
+
+    color:white;
+
+
+
+    text-align:center;
+
+
+
+  
+
+
+
+  }
+
+
+
+  .box{
+
+
+
+          position: relative;
+
+
+
+          display: inline-block; /* Make the width of box same as image */
+
+
+
+      }
+
+
+
+      .box .text{
+
+
+
+          padding: 15px 23px;
+
+
+
+          border-radius: 20px;
+
+
+
+          position: absolute;
+
+
+
+          z-index: 999;
+
+
+
+          margin: -10px auto;
+
+
+
+          left: 0;
+
+
+
+          right: 0;        
+
+
+
+          text-align: center;
+
+
+
+          top: 64%; /* Adjust this value to move the positioned div up and down*/
+
+
+
+          background: rgb(255, 255, 255);
+
+
+
+          
+
+
+
+          color: black;
+
+
+
+          width: 90%; /* Set the width of the positioned div */
+
+
+
+      }
+
+
+
+      .box img
+
+
+
+      {
+
+
+
+        height: 370px;
+
+
+
+      width: 100%;
+
+
+
+        border-radius: 5%;
+
+
+
+      }
+
+
+
+      .image-grid {
+
+
+
+      display: grid;
+
+
+
+      grid-template-columns: 1fr 1fr 1fr;
+
+
+
+  }
+
+
+
+  .grid-container {
+
+
+
+      max-width: 1300px;
+
+
+
+      margin: auto;
+
+
+
+  }
+
+
+
+  .image-grid .column {
+
+
+
+      margin: 22px;
+
+
+
+  }
+
+
+
+  .text-sub-heading {
+
+
+
+      color: #487052;
+
+
+
+      text-align: left;
+
+
+
+      font-size: 14px;
+
+
+
+      margin-top: 0px;
+
+
+
+  }
+
+
+
+  .text h1 {
+
+
+
+      font-size: 20px;
+
+
+
+      margin-top: 0px;
+
+
+
+      margin-bottom: 7px;
+
+
+
+      text-align: left;
+
+
+
+  }
+
+
+
+  img.blue-car-img {
+
+
+
+    margin-top: 30px;
+
+
+
+}
+
+
+
+  .para-learn-more-btn {
+
+
+
+      text-align: left;
+
+
+
+      font-weight: bold;
+
+
+
+      color: black;
+
+
+
+      font-size: 11px;
+
+
+
+      margin-top:8px;
+
+
+
+  }
+
+
+
+  .sub-head-para {
+
+
+
+      text-align: left;
+
+
+
+      color: black;
+
+
+
+      font-size: 12px;
+
+
+
+  }
+
+
+
+  .nine-sec-row-head h2 {
+
+
+
+      font-size: 30px;
+
+
+
+  }
+
+
+
+  .container .image-box-outer {
+
+
+
+      background-color: white;
+
+
+
+      margin-top: -15px;
+
+
+
+      border-radius: 22px;
+
+
+
+      width: 100%;
+
+
+
+  }
+
+
+
+  .image-grid {
+
+
+
+      margin-left: 20px;
+
+
+
+      margin-right: 20px;
+
+
+
+  }
+
+
+
+
+
+
+
+.All-pro-Btn{
+
+
+
+       
+
+
+
+    background: #f85646;
+
+
+
+       padding: 20px 37px; 
+
+
+
+       color: white;
+
+
+
+       font-weight: bold;
+
+
+
+       font-size: 25px !important;
+
+
+
+       border: none;
+
+
+
+       text-transform: uppercase;
+
+
+
+       padding: 1.0em 2em;
+
+
+
+       border-radius: 50px;
+
+
+
+       color: #fff;
+
+
+
+       background-color: #F85646; 
+
+
+
+       font-size: 1.1em;
+
+
+
+       border: 0;
+
+
+
+       cursor: pointer;
+
+
+
+       margin: 1em; 
+
+
+
+   }
+
+
+
+   .seven-sec {
+
+
+
+   background-color: #04383f;
+
+
+
+   background-image: url(https://media-public.canva.com/V0rbA/MADS40V0rbA/2/t.png);
+
+
+
+   background-repeat: repeat-x;
+
+
+
+   background-size: 64px 100px;
+
+
+
+}
+
+
+
+   .seven-sec-btn{
+
+
+
+       text-align: center;
+
+
+
+   }
+
+
+
+   div.eight-sec{
+
+
+
+   background-color:#487052;
+
+
+
+   padding-bottom: 20px;
+
+
+
+}
+
+
+
+.nine-sec {
+
+
+
+   margin-top: 1px !important;
+
+
+
+}
+
+
+
+h2.eight-sec-heading {
+
+
+
+   color: C6EFF9;
+
+
+
+   font-size: 25px;
+
+
+
+   text-align: center;
+
+
+
+   margin-top: 0px;
+
+
+
+   padding-top: 20px;
+
+
+
+}
+
+
+
+.form {
+
+
+
+   text-align: center;
+
+
+
+}
+
+
+
+.eight-sec-submit-Btn{
+
+
+
+
+
+
+
+   padding: 12px 42px;
+
+
+
+   color: white;
+
+
+
+   font-weight: bold;
+
+
+
+   font-size: 20px !important;ss
+
+
+
+   border: none;
+
+
+
+   text-transform: uppercase;
+
+
+
+   border-radius: 50px;
+
+
+
+   color: #fff;
+
+
+
+   background-color: #F85646;
+
+
+
+   border: 0;
+
+
+
+   cursor: pointer;
+
+
+
+  
+
+
+
+}
+
+
+
+.last-row-flex {
+
+
+
+ display: flex;
+
+
+
+   justify-content: center;
+
+
+
+   margin-top: 22px;
+
+
+
+}
+
+
+
+.eight-sec-inner-container {
+
+
+
+   width: 90%;
+
+
+
+   text-align: center;
+
+
+
+   margin: auto;
+
+
+
+}
+
+
+
+
+
+
+
+input#fname, input#lname, input#email {
+
+
+
+   width: 233px;
+
+
+
+margin-right:30px;
+
+
+
+   height: 42px;
+
+
+
+padding: 20px;
+
+
+
+}
+
+
+
+
+
+
+
+.follow-us {
+
+
+
+ line-height: 3;
+
+
+
+   margin-left: 64px;
+
+
+
+   color: white;
+
+
+
+   font-weight: 600;
+
+
+
+   font-size: 16px;
+
+
+
+}
+
+
+
+.eight-sec-p {
+
+
+
+   margin: auto;
+
+
+
+   color: white;
+
+
+
+   font-size: 12px;
+
+
+
+   margin-left: 0px;
+
+
+
+   margin-right: 0;
+
+
+
+}
+
+
+
+.last-row-img {
+
+
+
+   display: flex;
+
+
+
+   margin: auto;
+
+
+
+   margin-right: 28px;
+
+
+
+   margin-left: 0px !important;
+
+
+
+}
+
+
+
+.nine-sec {
+
+
+
+   background-color: #33463D;
+
+
+
+}
+
+
+
+.sec-nine-row-1 {
+
+
+
+   display: flex;
+
+
+
+   justify-content: center;
+
+
+
+}
+
+
+
+.nine-sec-img-1 {
+
+
+
+   margin: auto;
+
+
+
+   margin-right: 0px;
+
+
+
+   margin-left: 0px;}
+
+
+
+.nine-sec-row-head {
+
+
+
+   color: #FEFEFE;
+
+
+
+   margin-left: 0px;
+
+
+
+}
+
+
+
+.sub-col-flex {
+
+
+
+   display: flex !important;
+
+
+
+}
+
+
+
+.all-col-flex {
+
+
+
+   display: flex;
+
+
+
+}
+
+
+
+.nine-sec-container {
+
+
+
+   width: 50%;
+
+
+
+   margin: auto;
+
+
+
+}
+
+.sub-col-2>ul {
+
+    padding-right: 0px !important;
+
+}
+
+
+
+.sub-col-1 ul, .sub-col-2 ul, .col-3>ul, .col-4>ul {
+
+
+
+ line-height: 1.8;
+
+
+
+   color: white;
+
+
+
+   padding-right:20px;
+
+
+
+   font-size: 14px;
+
+
+
+   padding-left: 0px;
+
+
+
+   font-weight: 500;
+
+
+
+   list-style: none;
+
+
+
+}
+
+
+
+.sec-nine-row-2 {
+
+
+
+   padding-top: 15px;
+
+
+
+}
+
+
+
+.col-1-heading, .col-3-heading, .col-4-heading  {
+
+
+
+   font-weight: 600;
+
+
+
+   font-size: 16px;
+
+
+
+   padding-right: 10px;
+
+
+
+   color: fff;
+
+
+
+}
+
+
+
+p.footer-line {
+
+
+
+    margin-bottom: 0;
+
+
+
+   font-size: 12px;
+
+
+
+   color: white;
+
+
+
+   padding-top: 20px;
+
+
+
+   padding-bottom: 10px;
+
+
+
+   text-align: center;
+
+
+
+}
+
+
+
+.col-2 {
+
+
+
+   margin: auto;
+
+
+
+}
+
+
+
+.sub-col-1 ul{
+
+
+
+
+
+
+
+   padding-right: 20px;
+
+
+
+}
+
+
+
+
+
+/*dropdown-style*/
+
+
+
+.dropdown-check-list {
+
+  display: inline-block;
+
+}
+
+span.anchor {
+
+    margin-bottom: 0px;
+
+    letter-spacing: 0.8px;
+
+    font-size: 22px;
+
+    font-weight: 600;
+
+    color: white; 
+
+    text-align: center;
+
+}
+
+.dropdown-check-list .anchor {
+
+  position: relative;
+
+  cursor: pointer;
+
+  display: inline-block;
+
+  padding: 5px 50px 5px 10px;
+
+}
+
+
+
+.dropdown-check-list .anchor:after {
+
+    display: none;
+
+  position: absolute;
+
+  content: "";
+
+  border-left: 2px solid black;
+
+  border-top: 2px solid black;
+
+  padding: 5px;
+
+  right: 10px;
+
+  top: 20%;
+
+  -moz-transform: rotate(-135deg);
+
+  -ms-transform: rotate(-135deg);
+
+  -o-transform: rotate(-135deg);
+
+  -webkit-transform: rotate(-135deg);
+
+  transform: rotate(-135deg);
+
+}
+
+
+
+.dropdown-check-list .anchor:active:after {
+
+  right: 8px;
+
+  top: 21%;
+
+}
+
+ul.items {
+
+    background-color: white;
+
+}
+
+
+
+.dropdown-check-list ul.items {
+
+  padding: 2px;
+
+  display: none;
+
+  margin: 0;
+
+  border: 1px solid #ccc;
+
+  border-top: none;
+
+}
+
+
+
+.dropdown-check-list ul.items li {
+
+  list-style: none;
+
+}
+
+
+
+.dropdown-check-list.visible .anchor {
+
+  
+
+}
+
+
+
+.dropdown-check-list.visible .items {
+
+  display: block;
+
+}
+
+ul.items li input[type="checkbox"] {
+
+    box-sizing: border-box;
+
+    transition: .24s;
+
+    /* position: absolute; */
+
+    top: 0;
+
+    left: 0;
+
+    background-color:white;
+
+    border-color: rgb(0, 0, 0);
+
+    width: 18px;
+
+    margin-right: 10px;
+
+    height: 18px;
+
+    border-width: 2px;
+
+    border-style: solid;
+
+    border-radius: 2px;
+
+}
+
+ul.items {
+
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+
+}
+
+.dropdown-check-list {
+
+    display: inline-block;
+
+    width: 100%;
+
+    text-align: center;
+
+}
+
+ul.items {
+
+    text-align: left;
+
+    width: 50%;
+
+
+
+    margin-left: auto !important;
+
+    margin-right: auto !important;
+
+}
+
+.elementor-widget-pws_get_all_partners .first-section>img {
+    height: 720px !important;
+}
+
+
+@media screen and (max-width: 1024px){
+
+.trees {
+    padding-top: 5px;
+}
+.elementor-widget-pws_get_all_partners .planted {
+    width: 320px !important;
+    border-radius: 20px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-bottom: 10px;
+}
+#no-of-trees {
+    font-size: 56px !important;
+}
+.trees {
+    font-size: 22px !important;
+}
+}
+@media screen and (max-width: 576px){
+#no-of-trees {
+    font-size: 40px !important;
+}
+.trees {
+    font-size: 18px !important;
+}
+.trees {
+    padding-top: 5px;
+}
+button.businessBtn {
+    padding: 15px 25px !important;
+font-size: 16px !important;
+}
+.planted-flex {
+   
+    padding-bottom: 0px !important;
+}
+.planted {
+    border-radius: 20px !important;
+}
+.planted {
+ 
+    padding: 10px 10px;
+}
+
+.elementor-widget-pws_get_all_partners .planted {
+    width: 240px !important;
+     padding-top: 20px !important;
+}
+}
+
+@media screen and (min-width:578px) and (max-width: 767px){
+    
+    .first-section > img {
+    height: 550px !important;
+    background-size: 100% 100% !important;
+}
+}
+    
+@media screen and (min-width:992px) and (max-width: 1024px){
+#no-of-trees {
+    line-height: 54px !important;
+}
+}
+@media screen and (min-width:768px) and (max-width:1006px){
+.centered {
+    width: 100%;
+}
+}
+@media screen and (min-width:768px) and (max-width: 900px){
+
+    .second-section p {
+    font-size: 12px !important;
+}
+}
+
+
+@media screen and (min-width:768px) and (max-width:992px){
+
+    
+.elementor-widget-pws_get_all_partners .first-section > img {
+    height: 470px !important;
+}
+.centered {
+    top: 32% !important;
+}
+    
+}
+@media screen and (min-width:993px) and (max-width:1024px){
+    .elementor-widget-pws_get_all_partners .first-section > img {
+    height: 600px !important;
+}
+.centered {
+    top: 35% !important;
+}
+    
+}
+@media screen and (min-width:1025px) and (max-width: 1274px){
+
+.trees {
+    padding-top: 10px;
+}
+.elementor-widget-pws_get_all_partners .planted {
+    width: 460px !important;
+    border-radius: 40px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-bottom: 20px;
+    padding-top:40px !important;
+}
+#no-of-trees {
+    font-size: 85px !important;
+}
+.trees {
+    font-size: 30px !important;
+}
+.elementor-widget-pws_get_all_partners .first-section>img {
+    height: 650px !important;
+}
+.centered {
+    top: 37% !important;
+}
+    
+}
+
+#myInput {
+  box-sizing: border-box;
+  background-image: url('https://www.w3schools.com/howto/searchicon.png');
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 10px 20px 12px 45px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  width:100%;
+}
+
+</style>
+
+
+
+			 <div class="first-section">
+
+
+
+ 		 <img src="<?php echo $section_backgroundimage['url'];?>" alt="" style="width:100%; height: calc(100vh - 74px);">
+
+
+
+ 
+
+
+
+  <div class="centered">
+
+
+
+     <div class="planted">
+
+
+
+        <div id="no-of-trees"><?php echo number_format($total_trees_planted); ?></div>
+
+
+
+        <div class="trees">trees planted</div>
+
+
+
+    </div>  
+
+
+
+    <div class="join"><?php echo $page_tagline; ?><!--Join the climate battle.--></div>
+
+
+
+
+
+
+
+    <div class="red-buttons">
+
+
+
+     <div class="inner"><button class="businessBtn" onclick="window.open('<?php echo $b_link['url']; ?>','_blank')" >Businesses</button></div>
+
+
+
+        <div class="inner"><button class="businessBtn" onclick="window.open('<?php echo $ind_link['url']; ?>','_blank')">INDIVIDUALS</button></div>
+
+
+
+
+
+    </div>
+
+		
+
+        <div id="list1" class="dropdown-check-list" tabindex="100">
+
+        <span class="anchor">sort by partner</br><i class="fas fa-angle-down"></i></span>
+
+        <ul class="items" id="myCustomSearch">
+
+          
+
+		  
+
+		  
+
+		  <?php
+
+			 
+
+			  //calling api to get data
+
+			  if(!empty($all_partners['url']))
+
+			  {
+
+				 $allpartners = file_get_contents($all_partners['url']);
+
+			  }
+
+			  else
+
+			  {
+
+				 $allpartners = file_get_contents('');
+
+			  }
+
+			  
+
+			  $total_partner_summary = json_decode($allpartners);
+
+		 		
+
+			 //  	  echo "<pre>";
+
+				//   print_r($total_partner_summary);
+
+				//   echo "</pre>";
+
+				$count_part = 0; 
+
+				?>
+				<input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+				
+
+
+				<!--<form action="<?php //echo $_SERVER['PHP_SELF']; ?>" method="get" id="partnersselect">-->
+
+				<li class="header_part">
+
+					<!--<input type="checkbox" name="checkall" id="checkall" onClick="check_uncheck_checkbox(this.checked);" checked="checked" title="Check / Uncheck All"/>-->
+
+					
+
+					<input type="checkbox" name="checkedAll" id="checkedAll" title="Check / Uncheck All"/>
+
+					
+
+					<span class="li-text">Partners</span> 
+
+				</li>
+
+				<?php
+
+				foreach($total_partner_summary as $total_partner)
+
+				{
+
+				
+
+				//     echo "<pre>";
+
+				// 	print_r($total_partner);
+
+				// 	echo "</pre>";
+
+					
+
+					$totalcount = count($total_partner);
+
+					
+
+					for($p=0; $p<=$totalcount; $p++)
+
+					{
+
+						//echo $total_partner[$p]->partner_name;
+
+						if(!empty($total_partner[$p]->partnerId))
+
+						{
+
+					?>
+
+					
+
+						<li id="<?php echo $total_partner[$p]->partnerId; ?>">
+
+							<!--<input type="checkbox" id="part-<?php //echo $p; ?>" data-partid="<?php //echo $total_partner[$p]->partnerId; ?>" name="partners" checked="checked" class="checkbuttons" title="Check <?php //echo $total_partner[$p]->partner_name; ?>"/>-->
+
+							<input type="checkbox" id="part-<?php echo $p; ?>" data-partid="<?php echo $total_partner[$p]->partnerId; ?>" name="checkAll" class="checkSingle" title="Check <?php echo $total_partner[$p]->partner_name; ?>"/>
+
+							<span class="li-text"><?php echo $total_partner[$p]->partner_name; ?></span> 
+
+							
+							<?php 
+								$partname = $total_partner[$p]->partner_name;
+								$finalpartname = str_replace(' ','-',$partname);
+							 ?>	
+							<?php if($total_partner[$p]->dashboard == 'Dealership Opt-In' ){ ?>
+								
+								<span id="<?php echo $total_partner[$p]->dashboard; ?>" class="li-link"><a href="<?php echo esc_url(home_url('/carbon-offset-partners-dealership-hybopt/?chash=')).$total_partner[$p]->partnerId."&pname=".$finalpartname; ?>" target="_blank">View Profile</a></span>
+							
+							<?php } 
+							
+							elseif($total_partner[$p]->dashboard == 'Dealership Hybrid/Non Opt-In' || $total_partner[$p]->dashboard == 'Dealership Traditional'){ ?>
+
+								<span id="<?php echo $total_partner[$p]->dashboard; ?>" class="li-link"><a href="<?php echo esc_url(home_url('/carbon-offset-traditional-dealerships/?chash=')).$total_partner[$p]->partnerId; ?>" target="_blank">View Profile</a></span>
+
+							<?php }
+							
+							else{ ?>
+
+								<span id="<?php echo $total_partner[$p]->dashboard; ?>" class="li-link"><a href="<?php echo esc_url(home_url('/our-impact/?chash=')).$total_partner[$p]->partnerId; ?>" target="_blank">View Profile</a></span>
+
+							<?php } ?>
+
+							<!--<span class="li-link"> <a href="#" id="onlyp">Only</a></span> -->
+
+						</li>
+
+					
+
+					<?php
+
+						}
+
+					
+
+					}
+
+					
+
+					
+
+				} 
+
+				?>
+
+				 <!--</form>
+
+				 
+
+				 <script type="text/javascript">
+
+				 
+
+				 	jQuery('#partnersselect [type="checkbox"]').click(function(){
+
+						alert();
+
+						jQuery('#partnersselect').submit();
+
+					
+
+					  });
+
+				 
+
+				 </script>-->
+
+				
+
+					<!------Updated version---------->
+					
+					
+			<script type="text/javascript">
+				
+				jQuery(document).ready(function() {		
+				var selected = [];
+					  jQuery(".checkSingle").each(function(){
+						this.checked=false;
+						
+						//var single = jQuery(this).attr('data-partid');
+						//console.log("IF single checked = "+single);
+						
+						selected.push(jQuery(this).attr('data-partid'));
+						
+						
+					  });  
+					  
+					  var fullpartids = selected.join(",");
+					  
+					   load_checksingle_partner(fullpartids);
+					   
+				});	   
+					   
+			</script>
+			
+			
+			
+			
+			
+			
+			
+			
+          <script type="text/javascript">
+				
+				jQuery(document).ready(function() {
+				
+				<!-------------check / uncheck all ---------------->
+				
+				
+				  jQuery("#checkedAll").change(function(){
+					if(this.checked){
+					var selected = [];
+					  jQuery(".checkSingle").each(function(){
+						this.checked=true;
+						
+						//var single = jQuery(this).attr('data-partid');
+						//console.log("IF single checked = "+single);
+						
+						selected.push(jQuery(this).attr('data-partid'));
+						
+						
+					  });  
+					  
+					  var fullpartids = selected.join(",");
+					  
+					   load_checksingle_partner(fullpartids);
+					              
+					}else{
+					
+					var selected = [];
+					  jQuery(".checkSingle").each(function(){
+						this.checked=false;
+						
+						//var single = jQuery(this).attr('data-partid');
+						//console.log("Else single checked = "+single);
+						
+						selected.push(jQuery(this).attr('data-partid'));
+						
+					  });
+					  
+					   var fullpartids = selected.join(",");
+					  
+					   load_checksingle_partner(fullpartids);
+					                
+					}
+				  });
+				  
+				  
+				<!-------------Single selection ---------------->
+				
+				  jQuery(".checkSingle").click(function () {
+					
+					//var n = jQuery("#list1 .checkSingle:checked").length;
+					var selected = [];
+					jQuery("#list1 .checkSingle:checked").each(function () {
+            			
+						selected.push(jQuery(this).attr('data-partid'));
+						
+						
+        			});
+					
+					var fullpartids = selected.join(",");
+					  
+					load_checksingle_partner(fullpartids);
+					   
+					console.log(selected);
+					
+					
+					if (jQuery(this).is(":checked")){
+					
+					  
+					  var isAllChecked = 0;
+					 
+					   
+					  jQuery(".checkSingle").each(function(){
+						
+						 
+						if(!this.checked)
+						   isAllChecked = 1;
+						
+							       
+					  });
+					  
+					        
+					  
+					  if(isAllChecked == 0){ 
+					  
+					  jQuery("#checkedAll").prop("checked", true); 
+					  
+					  }     
+					  
+					  
+					}
+					else 
+					{
+					  jQuery("#checkedAll").prop("checked", false);
+					  					     
+					}
+					
+					
+				  });
+				});
+				
+				
+				
+				
+				
+				
+				// <!---check all Ajax function--->
+				function load_checksingle_partner(fullpartids)
+				{
+				
+					
+				
+								if(fullpartids == null || fullpartids == '')
+								{
+									var fullpartids = 'all';
+								}
+								
+								console.log("fullpartids="+fullpartids);
+								
+				
+								var strs = '&action=more_checksingle_ajax&partner='+fullpartids;
+								console.log(strs);
+								jQuery.ajax({
+									
+									type: "POST",
+									dataType: 'html',
+									url: '<?php echo admin_url('/admin-ajax.php') ?>',
+									data: strs,
+									success: function(data){
+									   //console.log(data);
+									   
+									   var obj = JSON.parse(data);
+									   console.log(obj);
+									  								   
+									   // appendiing results
+									   jQuery('#no-of-trees').text(obj[0]);
+									   jQuery('#PoundsofTotalCarbonOffset').text(obj[1]);
+									   jQuery('#no-of-days').text(obj[2]);
+									   jQuery('#no-of-years').text(obj[3]);
+									   jQuery('#no-of-miles').text(obj[4]);
+									   
+										
+									},
+									error : function(jqXHR, textStatus, errorThrown) {
+										console.log(errorThrown);
+										$loader.html(jqXHR + " :: " + textStatus + " :: " + errorThrown);
+									}
+							
+								});
+								return false;
+							}
+				
+				
+				</script>
+				
+				
+				
+
+				
+
+				
+
+				
+
+				
+
+				
+
+				
+
+			
+
+				 
+
+				 
+
+				<?php 
+
+				 $count_part++;
+
+			 ?>
+
+		
+
+		  
+
+		  
+
+		  
+
+		  
+
+		  
+
+		  
+
+		  
+
+		  
+
+		  
+
+		  
+
+		  
+
+		  
+
+		  <?php
+
+			 
+
+			  //calling api to get data
+
+			 /* if(!empty($all_partners['url']))
+
+			  {
+
+				 $allpartners = file_get_contents($all_partners['url']);
+
+			  }
+
+			  else
+
+			  {
+
+				 $allpartners = file_get_contents('');
+
+			  }
+
+			  
+
+			  $total_partner_summary = json_decode($allpartners);
+
+			  
+
+			  $count_partner = 0;				  
+
+			  foreach($total_partner_summary as $total_partner)
+
+			  {*/
+
+			
+
+		  ?>
+
+		  	<!--<li>
+
+				<input type="checkbox" id="part-<?php //echo $count_partner; ?>" data-partid="<?php //echo $total_partner[$count_partner]->partnerId; ?>" name="partners"/>
+
+				<span class="li-text"><?php //echo $total_partner[$count_partner]->partner_name; ?></span> <span class="li-link"><a href="">View Profile</a></span> 
+
+			</li>-->
+
+		  <?php //$count_partner++; } ?>
+
+        
+
+        </ul>
+
+      </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+			 <div class="second-section">
+
+
+
+
+
+
+
+  <div class="column">
+
+
+
+    <div class="column-data">
+
+
+
+    <h2 id="PoundsofTotalCarbonOffset"><?php echo $PoundsofTotalCarbonOffset ."M"; ?></h2>
+
+
+
+    <p>Pounds of Carbon Offset</p>
+
+
+
+    <img src="http://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/08/Carbon-icon.png" alt="Forest" style="width:120px">
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+  <div class="column">
+
+
+
+  <div class="column-data">
+
+
+
+    <h2 id="no-of-days"><?php echo number_format($DaysofWorkCreated); ?></h2>
+
+
+
+    <p>Days of Work Provided</p>
+
+
+
+    <img src="http://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/08/Employment-Created-Icon.png" alt="Forest" style="width:120px">
+
+
+
+  </div>
+
+
+
+  </div>
+
+
+
+  <div class="column">
+
+
+
+  <div class="column-data">
+
+
+
+    <h2 id="no-of-years"><?php echo number_format($YearsofDriving); ?></h2>
+
+
+
+    <p>Years of Driving</p>
+
+
+
+    <img src="http://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/08/blue-car.png" alt="Forest" style="width:120px" class="blue-car-img">
+
+
+
+  </div>
+
+
+
+  </div>
+
+
+
+  <div class="column">
+
+
+
+  <div class="column-data">
+
+
+
+    <h2 id="no-of-miles"><?php echo $MilesofAirTravel2 ."M"; ?></h2>
+
+
+
+    <p>Miles of Air Travel</p>
+
+
+
+    <img src="http://carbonoffsetcompany.ansaritechdev.com/wp-content/uploads/2021/08/Airplane-icon.png" alt="Forest" style="width:120px">
+
+
+
+  </div>
+
+
+
+  </div>
+
+
+
+
+
+
+
+</div>
+
+			 
+
+			 
+
+	<script>
+
+      
+
+    var checkList = document.getElementById('list1');
+
+checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
+
+if (checkList.classList.contains('visible'))
+
+  checkList.classList.remove('visible');
+
+else
+
+  checkList.classList.add('visible');
+
+}
+
+      
+
+  </script>	
+  <script>
+function filterFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  div = document.getElementById("myCustomSearch");
+  a = div.getElementsByTagName("li");
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+</script>	
+
+			
+
+			 <?php     
+
+			 wp_reset_query();
+
+		}
+
+	} 
+
+	
